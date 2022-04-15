@@ -27,7 +27,7 @@ The application finds all the log messages with the level error and prints them 
 
 ## How to navigate this project
 
-- **parser.ts** ([view code](https://github.com/Lambertyubin/log-parser-with-typescript/blob/main/src/parser/LogParser.ts#L1))
+- **parser.ts** ([view code](https://github.com/Lambertyubin/log-parser-with-typescript/blob/main/src/parser.ts))
   Entry point of the app that collects inputs from the command line, creates instances of the reader, error extractor, writer and passes them to the parser object.
 
 - **FileReader.ts** ([view code](https://github.com/Lambertyubin/log-parser-with-typescript/blob/main/src/reader/FileReader.ts#L1))
