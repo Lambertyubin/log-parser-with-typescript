@@ -58,7 +58,7 @@ The application finds all the log messages with the level error and prints them 
 
 - `npm install`
 
-### Navigate to src directory
+### Step 2: Navigate to src directory
 
 - `cd src`
 
