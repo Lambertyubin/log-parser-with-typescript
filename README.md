@@ -67,4 +67,4 @@ The application finds all the log messages with the level error and prints them 
 - `node parser.js --input ./app.log --output ./errors.json`
 
   The `./app.log` is the path to the input file in this case, while `./errors.json` is the path where we want to store our output.
-  [Click here](https://github.com/Lambertyubin/log-parser-with-typescript/blob/main/src/app.log) to view a sample input format.
+  [Click here](https://github.com/Lambertyubin/log-parser-with-typescript/blob/main/src/app.log) to view a sample input format, and [here](https://github.com/Lambertyubin/log-parser-with-typescript/blob/main/src/errors.json) to view a sample output.
