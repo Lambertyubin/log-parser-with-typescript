@@ -27,27 +27,27 @@ The application finds all the log messages with the level error and prints them 
 
 ## How to navigate this project
 
-- **parser.ts** ([view code](https://github.com/Lambertyubin/log-parser-with-typescript/blob/main/src/parser.ts))
+- **parser.ts** ([view code](https://gitfront.io/r/lambertyubin/fSTuWXjVoM2d/log-parser-with-typescript/blob/src/parser.ts))
   Entry point of the app that collects inputs from the command line, creates instances of the reader, error extractor, writer and passes them to the parser object.
 
-- **FileReader.ts** ([view code](https://github.com/Lambertyubin/log-parser-with-typescript/blob/main/src/reader/FileReader.ts#L1))
+- **FileReader.ts** ([view code](https://gitfront.io/r/lambertyubin/fSTuWXjVoM2d/log-parser-with-typescript/blob/src/reader/FileReader.ts))
   Reads the file line-by-line for memory efficiency especially when the input file becomes large. It uses a helper generator function to achieve this.
 
-  - [View code](https://github.com/Lambertyubin/log-parser-with-typescript/blob/main/src/helpers/helper-functions.ts#L3) for helper function
+  - [View code](https://gitfront.io/r/lambertyubin/fSTuWXjVoM2d/log-parser-with-typescript/blob/src/helpers/helper-functions.ts) for helper function
 
-- **ErrorExtractor.ts** ([view code](https://github.com/Lambertyubin/log-parser-with-typescript/blob/main/src/transformer/ErrorExtractor.ts#L1))
+- **ErrorExtractor.ts** ([view code](https://gitfront.io/r/lambertyubin/fSTuWXjVoM2d/log-parser-with-typescript/blob/src/transformer/ErrorExtractor.ts))
   Extracts level error messages from the logs.
 
-- **FileWriter.ts** ([view code](https://github.com/Lambertyubin/log-parser-with-typescript/blob/main/src/writer/FileWriter.ts#L1))
+- **FileWriter.ts** ([view code](https://gitfront.io/r/lambertyubin/fSTuWXjVoM2d/log-parser-with-typescript/blob/src/writer/FileWriter.ts))
   Writes the output messages to a destination file.
 
-- **LogParser.ts** ([view code](https://github.com/Lambertyubin/log-parser-with-typescript/blob/main/src/parser/LogParser.ts#L1))
+- **LogParser.ts** ([view code](https://gitfront.io/r/lambertyubin/fSTuWXjVoM2d/log-parser-with-typescript/blob/src/parser/LogParser.ts))
   Coordinates the actions of the reader, error extractor and writer. View code.
 
-- **Interfaces** ([view code](https://github.com/Lambertyubin/log-parser-with-typescript/tree/main/src/interfaces))
+- **Interfaces** ([view code](https://gitfront.io/r/lambertyubin/fSTuWXjVoM2d/log-parser-with-typescript/tree/src/interfaces/))
   Built to apply the SOLID principles of Interface Segregation and Dependency Injection. Also includes interfaces to define data types for the app.
 
-- **Unit tests** ([view code](https://github.com/Lambertyubin/log-parser-with-typescript/tree/main/tests/unit-tests)):
+- **Unit tests** ([view code](https://gitfront.io/r/lambertyubin/fSTuWXjVoM2d/log-parser-with-typescript/tree/tests/unit-tests/)):
   Partially covered, to be completed.
 
 - **Integration tests**: to be added
@@ -67,4 +67,4 @@ The application finds all the log messages with the level error and prints them 
 - `node parser.js --input ./app.log --output ./errors.json`
 
   The `./app.log` is the path to the input file in this case, while `./errors.json` is the path where we want to store our output.
-  [Click here](https://github.com/Lambertyubin/log-parser-with-typescript/blob/main/src/app.log) to view a sample input format, and [here](https://github.com/Lambertyubin/log-parser-with-typescript/blob/main/src/errors.json) to view a sample output.
+  [Click here](https://gitfront.io/r/lambertyubin/fSTuWXjVoM2d/log-parser-with-typescript/blob/src/app.log) to view a sample input format, and [here](https://gitfront.io/r/lambertyubin/fSTuWXjVoM2d/log-parser-with-typescript/blob/src/errors.json) to view a sample output.
