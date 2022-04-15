@@ -25,7 +25,7 @@ The application finds all the log messages with the level error and prints them 
 - Unit Test cases for each object were written before developing the classes. Jest was used as a testing tool due to its efficient mocking capability
 - TypeScript and Nodejs were used to develop the app
 
-# How to navigate this project
+## How to navigate this project
 
 - **parser.ts** ([view code](https://github.com/Lambertyubin/log-parser-with-typescript/blob/main/src/parser/LogParser.ts#L1))
   Entry point of the app that collects inputs from the command line, creates instances of the reader, error extractor, writer and passes them to the parser object.
