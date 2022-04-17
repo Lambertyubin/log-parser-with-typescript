@@ -6,13 +6,13 @@ import ILogger from "../interfaces/ILogger";
 */
 
 export default class ConsoleLogger implements ILogger {
-    constructor(){
-        
+    constructor() {
+
     }
-    saved(): void{
+    saved(): void {
         console.log("File parsed and saved to output successfully");
     }
-    error(err: Error): void {
+    error(err: any | unknown): void {
         console.error("Error occured", err)
     }
 }

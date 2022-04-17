@@ -8,37 +8,37 @@ import IOutputData from '../interfaces/data/IOutputData';
 */
 
 export default class FileWriter implements IWriter {
-    outputFilePath:string
-    constructor(outputFilePath: string){
+    outputFilePath: string
+    constructor(outputFilePath: string) {
         this.outputFilePath = outputFilePath
-        this.initializeFile()
+        this.initializeOutputFile()
 
     }
 
-    save(output:IOutputData, count:number) {
-        if(count!==Number.MIN_VALUE){
-            let outputData:string = this.formatOutput(output, count);
+    save(output: IOutputData, count: number) {
+        if (count !== Number.MIN_VALUE) {
+            let outputData: string = this.formatOutput(output, count);
             fs.appendFileSync(this.OutputFilePath(), outputData);
-        }else{
-            this.closeFile()
+        } else {
+            this.closeOutputFile()
         }
     }
 
-    private closeFile(parenthesis: string="]"):void{
+    private closeOutputFile(parenthesis: string = "]"): void {
         fs.appendFileSync(this.OutputFilePath(), parenthesis)
     }
 
-    private initializeFile(parenthesis: string="["): void {
+    private initializeOutputFile(parenthesis: string = "["): void {
         fs.writeFileSync(this.OutputFilePath(), parenthesis)
     }
 
 
-    private formatOutput(output:IOutputData, count:number):string{
-        let outputData:string = JSON.stringify(output, null, '\t')   
-        return count===1? outputData: ',\n'+ outputData
-    } 
-    
-    OutputFilePath():string{
+    private formatOutput(output: IOutputData, count: number): string {
+        let outputData: string = JSON.stringify(output, null, '\t')
+        return count === 1 ? outputData : ',\n' + outputData
+    }
+
+    private OutputFilePath(): string {
         return this.outputFilePath
     }
 }

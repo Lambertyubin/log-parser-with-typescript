@@ -13,51 +13,60 @@ import IOutputData from '../interfaces/data/IOutputData';
 
 export default class LogParser implements IReader, IWriter, ITransformer {
     fileReader: IReader
-    fileTransformer: ITransformer
+    errorExtractor: ITransformer
     fileWriter: IWriter
     private logger?: ILogger | null
 
-    constructor(fileReader: IReader, fileTransformer: ITransformer,  fileWriter: IWriter, logger?: ILogger) {
+    constructor(fileReader: IReader, errorExtractor: ITransformer, fileWriter: IWriter, logger?: ILogger) {
+        if (fileReader === null) {
+            throw new Error("FileReader argument cannot be null")
+        }
+        if (errorExtractor === null) {
+            throw new Error("ErrorExtractor argument cannot be null")
+        }
+        if (fileWriter === null) {
+            throw new Error("FileWriter argument cannot be null")
+        }
         this.fileReader = fileReader
-        this.fileTransformer = fileTransformer
+        this.errorExtractor = errorExtractor
         this.fileWriter = fileWriter
-        if(logger){
+        if (logger) {
             this.logger = logger
         }
-        
+
     }
 
-    parse=():void => {
+    parse = (): void => {
         try {
             const input = this.read()
             this.parseAndSave(input)
-            this.closeFile()  
+            this.closeFile()
             this.logger?.saved()
-        } catch (err:any) {
+        } catch (err: any) {
             this.logger?.error(err)
         }
-        
+
     }
 
-    read():Generator<string>|undefined {
+    read(): Generator<string> | undefined {
         return this.FileReader.read()
     }
 
-    transform(input:string):IOutputData|undefined{
+    transform(input: string): IOutputData | undefined {
         return this.FileTransformer.transform(input)
 
     }
 
-    save(output:IOutputData, count: number):void{
+    save(output: IOutputData, count: number): void {
         this.FileWriter.save(output, count)
     }
 
     private closeFile(parenthesis?: string): void {
-        this.FileWriter.save("]", Number.MIN_VALUE) 
+        this.FileWriter.save("]", Number.MIN_VALUE)
     }
 
-    private parseAndSave(input: Generator<string> |undefined):void{
-        if(!input){
+    private parseAndSave(input: Generator<string> | undefined): void {
+        if (!input) {
             return undefined;
         }
         let line = input.next();
@@ -66,7 +75,7 @@ export default class LogParser implements IReader, IWriter, ITransformer {
         let transformedData;
         while (line.value !== "" && !done) {
             transformedData = this.transform(line.value)
-            if(transformedData){
+            if (transformedData) {
                 count++
                 this.save(transformedData, count)
             }
@@ -75,15 +84,15 @@ export default class LogParser implements IReader, IWriter, ITransformer {
         }
     }
 
-    get FileReader():IReader{
+    get FileReader(): IReader {
         return this.fileReader
     }
 
-    get FileWriter(): IWriter{
+    get FileWriter(): IWriter {
         return this.fileWriter
     }
 
-    get FileTransformer():ITransformer{
-        return this.fileTransformer
+    get FileTransformer(): ITransformer {
+        return this.errorExtractor
     }
 }

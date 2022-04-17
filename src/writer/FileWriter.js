@@ -11,7 +11,7 @@ const fs_1 = __importDefault(require("fs"));
 class FileWriter {
     constructor(outputFilePath) {
         this.outputFilePath = outputFilePath;
-        this.initializeFile();
+        this.initializeOutputFile();
     }
     save(output, count) {
         if (count !== Number.MIN_VALUE) {
@@ -19,13 +19,13 @@ class FileWriter {
             fs_1.default.appendFileSync(this.OutputFilePath(), outputData);
         }
         else {
-            this.closeFile();
+            this.closeOutputFile();
         }
     }
-    closeFile(parenthesis = "]") {
+    closeOutputFile(parenthesis = "]") {
         fs_1.default.appendFileSync(this.OutputFilePath(), parenthesis);
     }
-    initializeFile(parenthesis = "[") {
+    initializeOutputFile(parenthesis = "[") {
         fs_1.default.writeFileSync(this.OutputFilePath(), parenthesis);
     }
     formatOutput(output, count) {

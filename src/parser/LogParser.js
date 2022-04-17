@@ -6,20 +6,30 @@ Object.defineProperty(exports, "__esModule", { value: true });
     It can be extended to use different readers, extractors, or writers as the needs of the app evolve.
 */
 class LogParser {
-    constructor(fileReader, fileTransformer, fileWriter, logger) {
+    constructor(fileReader, errorExtractor, fileWriter, logger) {
         this.parse = () => {
+            var _a, _b;
             try {
                 const input = this.read();
                 this.parseAndSave(input);
                 this.closeFile();
-                this.logger?.saved();
+                (_a = this.logger) === null || _a === void 0 ? void 0 : _a.saved();
             }
             catch (err) {
-                this.logger?.error(err);
+                (_b = this.logger) === null || _b === void 0 ? void 0 : _b.error(err);
             }
         };
+        if (fileReader === null) {
+            throw new Error("FileReader argument cannot be null");
+        }
+        if (errorExtractor === null) {
+            throw new Error("ErrorExtractor argument cannot be null");
+        }
+        if (fileWriter === null) {
+            throw new Error("FileWriter argument cannot be null");
+        }
         this.fileReader = fileReader;
-        this.fileTransformer = fileTransformer;
+        this.errorExtractor = errorExtractor;
         this.fileWriter = fileWriter;
         if (logger) {
             this.logger = logger;
@@ -62,7 +72,7 @@ class LogParser {
         return this.fileWriter;
     }
     get FileTransformer() {
-        return this.fileTransformer;
+        return this.errorExtractor;
     }
 }
 exports.default = LogParser;

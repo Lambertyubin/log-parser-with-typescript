@@ -1,5 +1,5 @@
 import IReader from '../interfaces/IReader'
-import {readFile} from '../helpers/helper-functions'
+import { readFile } from '../helpers/helper-functions'
 import fs from 'fs';
 
 /*
@@ -11,26 +11,27 @@ import fs from 'fs';
 export default class FileReader implements IReader {
     inputFilePath: string;
 
-    constructor(inputFilePath: string){
-        if(!this.fileExists(inputFilePath)){
+    constructor(inputFilePath: string) {
+        if (!this.fileExists(inputFilePath)) {
             throw new Error(`Input File does not exist`)
         }
         this.inputFilePath = inputFilePath
     }
 
-    read():Generator<string>|undefined{
+    read(): Generator<string> | undefined {
         let exists = this.fileExists(this.inputFilePath)
-        if(!exists){
+        if (!exists) {
             return undefined
         }
-        let output = readFile(this.inputFilePath)
+        let output = this.readInputFile(this.inputFilePath)
         return output;
     }
 
-    InputFilePath():string{
-        return this.inputFilePath
+    private readInputFile(inputFilePath: string) {
+        return readFile(inputFilePath)
     }
-    private fileExists(inputFile:string):boolean{
+
+    private fileExists(inputFile: string): boolean {
         return fs.existsSync(inputFile)
     }
 }

@@ -22,11 +22,11 @@ class FileReader {
         if (!exists) {
             return undefined;
         }
-        let output = (0, helper_functions_1.readFile)(this.inputFilePath);
+        let output = this.readInputFile(this.inputFilePath);
         return output;
     }
-    InputFilePath() {
-        return this.inputFilePath;
+    readInputFile(inputFilePath) {
+        return (0, helper_functions_1.readFile)(inputFilePath);
     }
     fileExists(inputFile) {
         return fs_1.default.existsSync(inputFile);

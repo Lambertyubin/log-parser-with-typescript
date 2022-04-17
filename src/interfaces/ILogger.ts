@@ -5,5 +5,5 @@
 
 export default interface ILogger {
     saved(): void
-    error(err:any):void
+    error(err: any | unknown): void
 }

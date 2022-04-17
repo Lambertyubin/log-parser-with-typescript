@@ -48,7 +48,8 @@ The application finds all the log messages with the level error and prints them 
   Built to apply the SOLID principles of Interface Segregation and Dependency Injection. Also includes interfaces to define data types for the app.
 
 - **Unit tests** ([view code](https://gitfront.io/r/lambertyubin/fSTuWXjVoM2d/log-parser-with-typescript/tree/tests/unit-tests/)):
-  Partially covered, to be completed.
+
+  - To run tests: `npm run test`
 
 - **Integration tests**: to be added
 
