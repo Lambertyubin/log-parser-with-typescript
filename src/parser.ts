@@ -12,11 +12,11 @@ import path from 'path'
 */
 
 const args: string[] = process.argv;
-const inputPath = path.join(__dirname, args[3])
-const fileReader = new FileReader(inputPath);
-const errorExtractor = new ErrorExtractor()
-const fileWriter = new FileWriter(args[5])
-const consoleLogger = new ConsoleLogger()
+const inputPath: string = path.join(__dirname, args[3])
+const fileReader: FileReader = new FileReader(inputPath);
+const errorExtractor: ErrorExtractor = new ErrorExtractor()
+const fileWriter: FileWriter = new FileWriter(args[5])
+const consoleLogger: ConsoleLogger = new ConsoleLogger()
 const logParser: LogParser = new LogParser(fileReader, errorExtractor, fileWriter, consoleLogger)
 
 logParser.parse()
