@@ -16,24 +16,21 @@ class FileWriter {
     save(output, count) {
         if (count !== Number.MIN_VALUE) {
             let outputData = this.formatOutput(output, count);
-            fs_1.default.appendFileSync(this.OutputFilePath(), outputData);
+            fs_1.default.appendFileSync(this.outputFilePath, outputData);
         }
         else {
             this.closeOutputFile();
         }
     }
-    closeOutputFile(parenthesis = "]") {
-        fs_1.default.appendFileSync(this.OutputFilePath(), parenthesis);
-    }
-    initializeOutputFile(parenthesis = "[") {
-        fs_1.default.writeFileSync(this.OutputFilePath(), parenthesis);
-    }
     formatOutput(output, count) {
         let outputData = JSON.stringify(output, null, '\t');
         return count === 1 ? outputData : ',\n' + outputData;
     }
-    OutputFilePath() {
-        return this.outputFilePath;
+    initializeOutputFile(parenthesis = "[") {
+        fs_1.default.writeFileSync(this.outputFilePath, parenthesis);
+    }
+    closeOutputFile(parenthesis = "]") {
+        fs_1.default.appendFileSync(this.outputFilePath, parenthesis);
     }
 }
 exports.default = FileWriter;

@@ -18,8 +18,6 @@ export default class ErrorExtractor implements ITransformer {
 
         const dataLineAsArray: string[] = input.split(' - ')
 
-
-
         return dataLineAsArray[1] === this.filter ? this.constructOutput(dataLineAsArray) : undefined;
 
     }

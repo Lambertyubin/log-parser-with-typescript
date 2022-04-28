@@ -16,9 +16,10 @@ const path_1 = __importDefault(require("path"));
 */
 const args = process.argv;
 const inputPath = path_1.default.join(__dirname, args[3]);
+const outputPath = path_1.default.join(__dirname, args[5]);
 const fileReader = new FileReader_1.default(inputPath);
 const errorExtractor = new ErrorExtractor_1.default();
-const fileWriter = new FileWriter_1.default(args[5]);
+const fileWriter = new FileWriter_1.default(outputPath);
 const consoleLogger = new ConsoleLogger_1.default();
 const logParser = new LogParser_1.default(fileReader, errorExtractor, fileWriter, consoleLogger);
 logParser.parse();

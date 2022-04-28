@@ -18,27 +18,24 @@ export default class FileWriter implements IWriter {
     save(output: IOutputData, count: number) {
         if (count !== Number.MIN_VALUE) {
             let outputData: string = this.formatOutput(output, count);
-            fs.appendFileSync(this.OutputFilePath(), outputData);
+            fs.appendFileSync(this.outputFilePath, outputData);
         } else {
             this.closeOutputFile()
         }
     }
-
-    private closeOutputFile(parenthesis: string = "]"): void {
-        fs.appendFileSync(this.OutputFilePath(), parenthesis)
-    }
-
-    private initializeOutputFile(parenthesis: string = "["): void {
-        fs.writeFileSync(this.OutputFilePath(), parenthesis)
-    }
-
 
     private formatOutput(output: IOutputData, count: number): string {
         let outputData: string = JSON.stringify(output, null, '\t')
         return count === 1 ? outputData : ',\n' + outputData
     }
 
-    private OutputFilePath(): string {
-        return this.outputFilePath
+    private initializeOutputFile(parenthesis: string = "["): void {
+        fs.writeFileSync(this.outputFilePath, parenthesis)
     }
+
+    private closeOutputFile(parenthesis: string = "]"): void {
+        fs.appendFileSync(this.outputFilePath, parenthesis)
+    }
+
+
 }

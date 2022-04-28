@@ -1,10 +1,11 @@
 import IReader from '../interfaces/IReader'
-import { readFile } from '../helpers/helper-functions'
 import fs from 'fs';
+import nReadlines from 'n-readlines'
+import ConsoleLogger from '../logger/ConsoleLogger';
 
 /*
     A class that reads log messages from an input file. 
-    Uses a helper function (readFile) to read the file line-by-line 
+    Uses a generator function to read the file line-by-line 
     for memory efficiency especially when the input file becomes large
 */
 
@@ -23,15 +24,23 @@ export default class FileReader implements IReader {
         if (!exists) {
             return undefined
         }
-        let output = this.readInputFile(this.inputFilePath)
+        let output = this.readInputFile()
         return output;
     }
 
-    private readInputFile(inputFilePath: string) {
-        return readFile(inputFilePath)
+    private * readInputFile(): Generator<string> | undefined {
+        let line;
+        try {
+            let broadLines = new nReadlines(this.inputFilePath)
+            while (line = broadLines.next()) {
+                yield line.toString('ascii')
+            }
+        } catch (err) {
+            (new ConsoleLogger()).error(err)
+        }
     }
 
-    private fileExists(inputFile: string): boolean {
+    protected fileExists(inputFile: string): boolean {
         return fs.existsSync(inputFile)
     }
 }

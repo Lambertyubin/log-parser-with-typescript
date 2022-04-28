@@ -13,9 +13,12 @@ import path from 'path'
 
 const args: string[] = process.argv;
 const inputPath: string = path.join(__dirname, args[3])
+const outputPath: string = path.join(__dirname, args[5])
+
+
 const fileReader: FileReader = new FileReader(inputPath);
 const errorExtractor: ErrorExtractor = new ErrorExtractor()
-const fileWriter: FileWriter = new FileWriter(args[5])
+const fileWriter: FileWriter = new FileWriter(outputPath)
 const consoleLogger: ConsoleLogger = new ConsoleLogger()
 const logParser: LogParser = new LogParser(fileReader, errorExtractor, fileWriter, consoleLogger)
 

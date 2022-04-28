@@ -3,11 +3,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const helper_functions_1 = require("../helpers/helper-functions");
 const fs_1 = __importDefault(require("fs"));
+const n_readlines_1 = __importDefault(require("n-readlines"));
+const ConsoleLogger_1 = __importDefault(require("../logger/ConsoleLogger"));
 /*
     A class that reads log messages from an input file.
-    Uses a helper function (readFile) to read the file line-by-line
+    Uses a generator function to read the file line-by-line
     for memory efficiency especially when the input file becomes large
 */
 class FileReader {
@@ -22,11 +23,20 @@ class FileReader {
         if (!exists) {
             return undefined;
         }
-        let output = this.readInputFile(this.inputFilePath);
+        let output = this.readInputFile();
         return output;
     }
-    readInputFile(inputFilePath) {
-        return (0, helper_functions_1.readFile)(inputFilePath);
+    *readInputFile() {
+        let line;
+        try {
+            let broadLines = new n_readlines_1.default(this.inputFilePath);
+            while (line = broadLines.next()) {
+                yield line.toString('ascii');
+            }
+        }
+        catch (err) {
+            (new ConsoleLogger_1.default()).error(err);
+        }
     }
     fileExists(inputFile) {
         return fs_1.default.existsSync(inputFile);
