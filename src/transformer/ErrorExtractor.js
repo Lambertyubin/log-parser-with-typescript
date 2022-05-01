@@ -28,7 +28,7 @@ class ErrorExtractor {
         second = "{" + second;
         let level = first.split(" - ")[1].trim();
         let timestamp = first.split(" - ")[0];
-        let newArray = [];
+        const newArray = [];
         newArray[0] = timestamp;
         newArray[1] = level;
         newArray[2] = second;
