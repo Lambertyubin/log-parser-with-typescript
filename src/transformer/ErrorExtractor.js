@@ -23,8 +23,16 @@ class ErrorExtractor {
             this.filter = filter;
     }
     transform(input) {
-        const dataLineAsArray = input.split(' - ');
-        return dataLineAsArray[1] === this.filter ? this.constructOutput(dataLineAsArray) : undefined;
+        const dataLineAsArray = input.split('- {');
+        let [first, second] = dataLineAsArray;
+        second = "{" + second;
+        let level = first.split(" - ")[1].trim();
+        let timestamp = first.split(" - ")[0];
+        let newArray = [];
+        newArray[0] = timestamp;
+        newArray[1] = level;
+        newArray[2] = second;
+        return newArray[1] === this.filter ? this.constructOutput(newArray) : undefined;
     }
 }
 exports.default = ErrorExtractor;
