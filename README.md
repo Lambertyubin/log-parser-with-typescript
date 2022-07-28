@@ -25,33 +25,6 @@ The application finds all the log messages with the level error and prints them 
 - Unit Test cases for each object were written before developing the classes. Jest was used as a testing tool due to its efficient mocking capability
 - TypeScript and Nodejs were used to develop the app
 
-## How to navigate this project
-
-- **parser.ts** ([view code](https://gitfront.io/r/lambertyubin/fSTuWXjVoM2d/log-parser-with-typescript/blob/src/parser.ts))
-  Entry point of the app that collects inputs from the command line, creates instances of the reader, error extractor, writer and passes them to the parser object.
-
-- **FileReader.ts** ([view code](https://gitfront.io/r/lambertyubin/fSTuWXjVoM2d/log-parser-with-typescript/blob/src/reader/FileReader.ts))
-  Reads the file line-by-line for memory efficiency especially when the input file becomes large. It uses a helper generator function to achieve this.
-
-  - [View code](https://gitfront.io/r/lambertyubin/fSTuWXjVoM2d/log-parser-with-typescript/blob/src/helpers/helper-functions.ts) for helper function
-
-- **ErrorExtractor.ts** ([view code](https://gitfront.io/r/lambertyubin/fSTuWXjVoM2d/log-parser-with-typescript/blob/src/transformer/ErrorExtractor.ts))
-  Extracts level error messages from the logs.
-
-- **FileWriter.ts** ([view code](https://gitfront.io/r/lambertyubin/fSTuWXjVoM2d/log-parser-with-typescript/blob/src/writer/FileWriter.ts))
-  Writes the output messages to a destination file.
-
-- **LogParser.ts** ([view code](https://gitfront.io/r/lambertyubin/fSTuWXjVoM2d/log-parser-with-typescript/blob/src/parser/LogParser.ts))
-  Coordinates the actions of the reader, error extractor and writer. View code.
-
-- **Interfaces** ([view code](https://gitfront.io/r/lambertyubin/fSTuWXjVoM2d/log-parser-with-typescript/tree/src/interfaces/))
-  Built to apply the SOLID principles of Interface Segregation and Dependency Injection. Also includes interfaces to define data types for the app.
-
-- **Unit tests** ([view code](https://gitfront.io/r/lambertyubin/fSTuWXjVoM2d/log-parser-with-typescript/tree/tests/unit-tests/)):
-
-  - To run tests: `npm run test`
-
-- **Integration tests**: to be added
 
 ## Usage
 
